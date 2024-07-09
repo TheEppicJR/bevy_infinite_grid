@@ -122,7 +122,11 @@ fn fragment(in: VertexOutput) -> FragmentOutput {
     let dot_fadeout = abs(dot(grid_position.normal, normalize(view.world_position - frag_pos_3d)));
     let alpha_fadeout = mix(dist_fadeout, 1., dot_fadeout) * min(grid_settings.dot_fadeout_const * dot_fadeout, 1.);
 
-    grid_color.a = grid_color.a * alpha_fadeout;
+    // grid_color.a = grid_color.a * alpha_fadeout;
+    grid_color.a = 1.0;
+    grid_color.r = real_depth / 100.0;
+    grid_color.g = max(0.0, -real_depth / 100.0);
+    grid_color.b = 0.0;
     out.color = grid_color;
 
     return out;
