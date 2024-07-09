@@ -140,6 +140,7 @@ fn fragment(in: VertexOutput) -> FragmentOutput {
         grid_color.b = 0.0;
     }
     out.color = grid_color;
+    out.depth = 50.0;
 
     return out;
 }
