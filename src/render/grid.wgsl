@@ -124,8 +124,16 @@ fn fragment(in: VertexOutput) -> FragmentOutput {
 
     // grid_color.a = grid_color.a * alpha_fadeout;
     grid_color.a = 1.0;
-    grid_color.r = max(0.0, dot_fadeout);
-    grid_color.g = max(0.0, -dot_fadeout);
+    if (dot_fadeout > 0.001) {
+        grid_color.r = 1.0;
+    } else {
+        grid_color.r = 0.0;
+    }
+    if (dot_fadeout < -0.001) {
+        grid_color.g = 1.0;
+    } else {
+        grid_color.g = 0.0;
+    }
     if (abs(dot_fadeout) < 0.001) {
         grid_color.b = 1.0;
     } else {
